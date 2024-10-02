@@ -5,11 +5,11 @@
 
 ` docker-compose up -d`
 
-3. Создание проекта Laravel внутри контейнера:
+2. Создание проекта Laravel внутри контейнера:
    
 `docker-compose exec app composer create-project laravel/laravel --prefer-dist application'`
 
-5. Решение проблемы с правами доступа: Если вы видите ошибку mkdir(): Permission denied, это означает, что пользователь внутри контейнера не имеет прав на запись в каталог /var/www. Для исправления выполните команду:
+3. Решение проблемы с правами доступа: Если вы видите ошибку mkdir(): Permission denied, это означает, что пользователь внутри контейнера не имеет прав на запись в каталог /var/www. Для исправления выполните команду:
 ```
 docker-compose exec app chown -R radmin:radmin /var/www
 
@@ -42,7 +42,7 @@ docker-compose exec app bash
 ```
  docker-compose exec app chown -R radmin:radmin /var/www
 ```
-0.1. Дать последнюю версию FROM php:8.2-fpm в Dockerfile. Проверка для посл версии Laravel
+0.1. Дать последнюю версию FROM php:8.2-fpm в Dockerfile. Проверка для посл версии Laravel php artisan -V
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>

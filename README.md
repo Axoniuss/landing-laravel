@@ -1,5 +1,5 @@
 
-
+Важно: Создать файл .env (с копированием .env.example) нужно вписать польз данные для подключения к БД.
 
 1. Запуск контейнера с помощью Docker Compose:
 
@@ -25,8 +25,8 @@ ps. (Первые 2 команды для исправления прав)
 docker-compose exec app chown -R www-data:www-data /var/www/storage
 docker-compose exec app chmod -R 775 /var/www/storage
 ```
+Управление контейнером (Нужные команды)
 ```
-Управление контейнером
 docker-compose up -d,down, restart, ps(список process status)
 Миграции
 docker-compose exec app php artisan migrate

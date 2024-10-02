@@ -1,3 +1,50 @@
+
+
+
+1. Запуск контейнера с помощью Docker Compose:
+
+` docker-compose up -d`
+
+3. Создание проекта Laravel внутри контейнера:
+   
+`docker-compose exec app composer create-project laravel/laravel --prefer-dist application'`
+
+5. Решение проблемы с правами доступа: Если вы видите ошибку mkdir(): Permission denied, это означает, что пользователь внутри контейнера не имеет прав на запись в каталог /var/www. Для исправления выполните команду:
+```
+docker-compose exec app chown -R radmin:radmin /var/www
+
+chown -R radmin:radmin /var/www
+```
+Далее скопируйте файлы приложения в тот же каталог, что и файл docker-compose.yml, чтобы вы могли поделиться файлом переменных среды Laravel с Docker Compose. Затем вы можете удалить каталог, applicationсозданный Composer:
+```
+cp -rT application .
+rm -rfv application
+```
+ps. (Первые 2 команды для исправления прав)
+```
+docker-compose exec app chown -R www-data:www-data /var/www/storage
+docker-compose exec app chmod -R 775 /var/www/storage
+```
+```
+Управление контейнером
+docker-compose up -d,down, restart, ps(список process status)
+Миграции
+docker-compose exec app php artisan migrate
+docker-compose logs -f
+Запуск команды Laravel Artisan внутри контейнера
+docker-compose exec app php artisan <команда>
+Вход внутрь контейнера (Bash доступ)
+docker-compose exec app bash
+
+```
+На всякий 
+0. Создать директорию и дать ей польз права. Проверить внутри контейнера какие права
+```
+ docker-compose exec app chown -R radmin:radmin /var/www
+```
+0.1. Дать последнюю версию FROM php:8.2-fpm в Dockerfile. Проверка для посл версии Laravel
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

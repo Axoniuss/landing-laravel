@@ -1,5 +1,15 @@
 
-Важно: Создать файл .env (с копированием .env.example) нужно вписать польз данные для подключения к БД. Еще вписать нужного пользователя в docker-compose.yml (radmin и его UID, для просмотра echo $UID). Еще скопировать cp .env.example .env и вписать данные для подкл к бд.
+Важно: Создать файл .env (с копированием .env.example) нужно вписать польз данные для подключения к БД. Еще вписать нужного пользователя в docker-compose.yml (radmin и его UID, для просмотра echo $UID). Еще скопировать cp .env.example .env и вписать данные для подкл к бд. Еще нужно установить в контейнер app композер
+```
+docker exec -u 0 -it landing-laravel-app-1 /bin/bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('https://composer.github.io/installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+mv composer.phar /usr/local/bin/composer
+composer install
+composer --version
+
+```
 
 1. Запуск контейнера с помощью Docker Compose:
 

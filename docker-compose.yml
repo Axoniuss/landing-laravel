@@ -3,7 +3,7 @@ services:
     build:
       args:
         user: radmin
-        uid: 1000
+        uid: 1002
       context: ./
       dockerfile: Dockerfile
     image: landing-app
